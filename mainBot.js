@@ -111,6 +111,7 @@ client.on('message', message => {
             revie += " ";
     }
     client.fetchInvite(message.content.split(' ')[1]).then(g => {
+        console.log("PLEASE READ THIS: " + message.content.split(' ')[1]);
         add.put({id: g.guild.id, name: g.guid.name}, function(err) {});
     });
   }

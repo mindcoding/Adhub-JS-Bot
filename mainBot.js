@@ -2,9 +2,9 @@ const Discord = require('discord.js');
 var openDB = require('json-file-db');
 // Create an instance of a Discord client
 const client = new Discord.Client();
-
+const config = require("./config.json");
 // The token of your bot - https://discordapp.com/developers/applications/me
-const token = 'your bot token here';
+const token = config.token;
 
 // The ready event is vital, it means that your bot will only start reacting to information
 // from Discord _after_ ready is emitted

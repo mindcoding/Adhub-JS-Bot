@@ -130,14 +130,15 @@ client.on('message', message => {
   {
     if(message.content.split(' ').length == 2)
     {
-      try {
       client.fetchInvite(message.content.split(' ')[1]).then(g => {
-        message.channel.send(g.guild.name);
-      }catch(err)
-      {
-        message.reply(" sorry the code you provided is not valid.");
-      }
+        try {
+          message.channel.send(g.guild.name);
+        }catch(err)
+        {
+          message.reply(" sorry the code you provided is not valid.");
+        }    
       });
+    
     }
   }
   if(message.content.substr(1, 6) == 'review')

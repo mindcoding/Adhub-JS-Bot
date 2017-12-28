@@ -54,6 +54,8 @@ client.on('message', message => {
         else
           message.channel.send("This user has not received any warnings");
       });
+    }else {
+      message.reply(" you do not have permissions to check warnings");
     }
   }
   if(message.content.substr(1, 8) == 'shutdown')
@@ -76,7 +78,7 @@ client.on('message', message => {
   if(message.content.substr(1, 3) == 'ban')
   {
     var args = message.content.split(' ');
-    if(args[0] != 'ban') return;
+    if(args[0] != '/ban') return;
     if(!message.member.roles.some(r=>["DC | Admin", "AdHub | Board of Directors"].includes(r.name)) )    
     {
       message.channel.send("You do not have permissions to ban");

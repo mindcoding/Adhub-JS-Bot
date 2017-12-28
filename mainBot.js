@@ -43,11 +43,12 @@ client.on('message', message => {
       });
     }
   }
-  if(message.content.split(' ')[0] == 'checkWarnings')
+  if(message.content.split(' ')[0] == '/checkWarnings')
   {
     if(message.member.roles.some(r=>["DC | Moderators", "DC | Admin", "AdHub | Board of Directors"].includes(r.name)))
     {
       var warns = openDB('warns.json');
+      if(message.content.split(' ').length != 2) return message.reply(" incorrect parameters /checkWarnings <user>");
       warns.get({id: parseInt(message.mentions.first().id)}, function(err, data) {
         if(data.length > 0)
           return message.channel.send("User has been warned " + data[0].warn);

@@ -23,6 +23,39 @@ client.on('message', message => {
     // Send "pong" to the same channel
     message.channel.send('pong');
   }
+  if(message.content.substr(1, 4) == 'warn')
+  {
+    var args = message.content.substr(' ');
+    if(args[0] != '/warn') return;
+    if(message.member.roles.some(r=>["DC | Moderators", "DC | Admin", "AdHub | Board of Directors"].includes(r.name)))
+    {
+      var warns = openDB('warns.json'); 
+      warns.get({id: parseInt(message.mentions.first().id)}, function(err, data) {
+        var warnings;
+        if(data == undefined || data[0] == undefined)
+        {
+          warnings = data[0].warn;
+        }else
+        {
+          warnings = 0;
+        }
+        warns.put({id: message.mentions.first().id, warn: warnings});
+      });
+    }
+  }
+  if(message.content.split(' ')[0] == 'checkWarnings')
+  {
+    if(message.member.roles.some(r=>["DC | Moderators", "DC | Admin", "AdHub | Board of Directors"].includes(r.name)))
+    {
+      var warns = openDB('warns.json');
+      warns.get({id: parseInt(message.mentions.first().id)}, function(err, data) {
+        if(data.length > 0)
+          return message.channel.send("User has been warned " + data[0].warn);
+        else
+          message.channel.send("This user has not received any warnings");
+      });
+    }
+  }
   if(message.content.substr(1, 8) == 'shutdown')
   {
     if(!message.author.id == "118455061222260736")

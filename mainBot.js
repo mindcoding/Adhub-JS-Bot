@@ -105,6 +105,7 @@ client.on('message', message => {
       });
     
     }
+  }
   if(message.content.split(' ')[0] == '/review')
   {
     //var add = openDB("review.json");

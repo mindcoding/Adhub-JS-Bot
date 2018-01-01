@@ -108,11 +108,11 @@ client.on('message', message => {
   }
   if(message.content.split(' ')[0] == '/review')
   {
-    var add = openDB("review.json");
+    //var add = openDB("review.json");
     var arr = message.content.split(' ');
     if(arr.length <= 3)
     {
-      message.reply(" sorry, incorrect arguments");
+      return message.reply(" sorry, incorrect arguments");
     }
     var revie = "";
     for(var i = 3; i<arr.length; i++)
@@ -121,13 +121,13 @@ client.on('message', message => {
         if(arr.length - 1 != i)
             revie += " ";
     }
-    var chan = message.guild.channels.find(val => val.name == arr[2]);
+    var chan = message.guild.channels.find(val => val.name == message.mentions.channels.first().name);
     chan.send(revie);
     /*client.fetchInvite(message.content.split(' ')[1]).then(g => {
         console.log("PLEASE READ THIS: " + message.content.split(' ')[1]);
         add.put({id: g.guild.id, name: g.guid.name}, function(err) {});
     });*/
-  }
+  }  
 });
 
 // Log our bot in

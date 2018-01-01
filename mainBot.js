@@ -105,10 +105,10 @@ client.on('message', message => {
       });
     
     }
-  }
   if(message.content.split(' ')[0] == '/review')
   {
     //var add = openDB("review.json");
+    if(if(!message.member.roles.some(r=>["DC | Advertiser", "AdHub | Board of Directors"].includes(r.name)) )  )
     var arr = message.content.split(' ');
     if(arr.length <= 3)
     {
@@ -122,12 +122,13 @@ client.on('message', message => {
             revie += " ";
     }
     var chan = message.guild.channels.find(val => val.name == message.mentions.channels.first().name);
-    chan.send(revie);
-    /*client.fetchInvite(message.content.split(' ')[1]).then(g => {
-        console.log("PLEASE READ THIS: " + message.content.split(' ')[1]);
-        add.put({id: g.guild.id, name: g.guid.name}, function(err) {});
-    });*/
+    client.fetchInvite(message.content.split(' ')[1]).then(g => {
+      setTimeout(function() {
+        chan.send(revie + "\n" + g);
+      }, 30000);
+    });
   }  
+
 });
 
 // Log our bot in

@@ -125,15 +125,30 @@ client.on('message', message => {
         if(arr.length - 1 != i)
             revie += " ";
     }
+    
+    if(coolDownArr.indexOf(message.author.id) >= 0)
+    {
+      return message.reply(" please wait before executing this command again.");
+    }
+
     var chan = message.guild.channels.find(val => val.name == message.mentions.channels.first().name);
     client.fetchInvite(message.content.split(' ')[1]).then(g => {
-      setTimeout(function() {
-        chan.send(revie + "\n" + g);
-      }, 30000);
+      chan.send(revie + "\n" + g);
+      coolDownArr.push(message.author.id);
+      setTimeout(function()
+      {
+        var index = coolDownArr.indexOf(message.author.id);
+        if (index >= 0) {
+          arr.splice( index, 1 );
+        }
+      }, 30000)
+      
     });
   }   
 
 });
+
+var coolDownArr = [];
 
 // Log our bot in
 client.login(token);

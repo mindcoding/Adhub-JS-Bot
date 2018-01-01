@@ -110,7 +110,7 @@ client.on('message', message => {
     //var add = openDB("review.json");
     if(!message.member.roles.some(r=>["DC | Advertiser", "AdHub | Board of Directors"].includes(r.name)) )
     {
-      return message.reply(" you do not permissions to preform this action");
+      return message.reply(" you do not have permissions to perform this command");
     }
     var arr = message.content.split(' ');
     if(arr.length <= 3)
@@ -130,7 +130,7 @@ client.on('message', message => {
         chan.send(revie + "\n" + g);
       }, 30000);
     });
-  }  
+  }   
 
 });
 

@@ -108,7 +108,10 @@ client.on('message', message => {
   if(message.content.split(' ')[0] == '/review')
   {
     //var add = openDB("review.json");
-    if(if(!message.member.roles.some(r=>["DC | Advertiser", "AdHub | Board of Directors"].includes(r.name)) )  )
+    if(!message.member.roles.some(r=>["DC | Advertiser", "AdHub | Board of Directors"].includes(r.name)) )
+    {
+      return message.reply(" you do not permissions to preform this action");
+    }
     var arr = message.content.split(' ');
     if(arr.length <= 3)
     {

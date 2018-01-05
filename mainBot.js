@@ -6,6 +6,8 @@ const config = require("./config.json");
 // The token of your bot - https://discordapp.com/developers/applications/me
 const token = config.token;
 
+const donateLink = "http://somepaypallink.com";
+
 // The ready event is vital, it means that your bot will only start reacting to information
 // from Discord _after_ ready is emitted
 client.on('ready', () => {
@@ -105,6 +107,10 @@ client.on('message', message => {
       });
     
     }
+  }
+  if(message.content.split(' ')[0] == '/donate')
+  {
+    return message.channel.send("You can donate here: " + donateLink);
   }
   if(message.content.split(' ')[0] == '/review')
   {

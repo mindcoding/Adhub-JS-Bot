@@ -17,6 +17,8 @@ client.on('ready', () => {
 // Create an event listener for messages
 client.on('message', message => {
   // If the message is "ping"
+  if(message.content == "(╯°□°）╯︵ ┻━┻")
+    return message.channel.send("┬─┬﻿ ノ( ゜-゜ノ)");
   if(message.content.substr(1, 11) == 'testcommand')
   {
     message.channel.send("This is how messages *should* look!");

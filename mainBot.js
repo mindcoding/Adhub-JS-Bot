@@ -95,7 +95,7 @@ client.on('message', message => {
       var channels = message.mentions.channels;
     }
   }
-  if(message.content.split(' ')[0] == 'apply')
+  if(message.content.split(' ')[0] == '/apply')
   {
     if(message.content.split(' ').length == 3)
     {

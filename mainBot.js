@@ -95,13 +95,15 @@ client.on('message', message => {
       var channels = message.mentions.channels;
     }
   }
-  if(message.content.substr(1, 5) == 'apply')
+  if(message.content.split(' ')[0] == 'apply')
   {
-    if(message.content.split(' ').length == 2)
+    if(message.content.split(' ').length == 3)
     {
       client.fetchInvite(message.content.split(' ')[1]).then(g => {
         try {
           message.channel.send(g.guild.name);
+          var channy = message.guild.channels.find(val=>val.id == "400003339187781642");
+          channy.send(g.guild.name + "\n" + message.author + "\n" + g + "\n" + message.content.split(' ')[2]);
         }catch(err)
         {
           message.reply(" sorry the code you provided is not valid.");
